@@ -1,9 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
-import Login from './App/Pages/Login';
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
+import { NavigationContainer } from '@react-navigation/native';
 import Constants from 'expo-constants';
-import Home from './App/Pages/Home';
+import { StyleSheet, View } from 'react-native';
+import TabNavigation from './App/Navigations/TabNavigation';
+import Login from './App/Pages/Login';
 
 export default function App() {
   return (
@@ -11,7 +11,9 @@ export default function App() {
       publishableKey={Constants.expoConfig.extra.clerkPublishableKey}>
       <View style={styles.container}>
         <SignedIn>
-          <Home />
+          <NavigationContainer>
+            <TabNavigation />
+          </NavigationContainer>
         </SignedIn>
         <SignedOut>
           <Login />
