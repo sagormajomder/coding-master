@@ -1,19 +1,12 @@
-import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { StyleSheet, View, Text, Image, Dimensions } from 'react-native';
 import Colors from '../Common/Colors';
 import LoginImage from './../../assets/gif/Programming.gif';
+import SignInWithOAuth from '../Components/SignInWithOAuth';
 
 export default function Login() {
   return (
-    <View style={styles.container}>
+    <View>
       <Image source={LoginImage} style={styles.loginImage} />
       <View style={styles.loginContainer}>
         <View>
@@ -22,15 +15,7 @@ export default function Login() {
           <Text style={styles.subHeadingText}>
             Your Ultimate Programming Learning Toolkit
           </Text>
-          <TouchableOpacity style={styles.button}>
-            <Ionicons
-              name='logo-google'
-              size={24}
-              color='white'
-              style={{ marginRight: 10 }}
-            />
-            <Text style={styles.buttonText}>Sign In with Google</Text>
-          </TouchableOpacity>
+          <SignInWithOAuth />
         </View>
       </View>
     </View>
@@ -60,16 +45,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
     color: Colors.GRAY,
   },
-  button: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.PRIMARY,
-    marginTop: 30,
-    marginHorizontal: 50,
-    paddingVertical: 10,
-    borderRadius: 999,
-  },
-  buttonText: { color: Colors.WHITE, fontSize: 16 },
 });
