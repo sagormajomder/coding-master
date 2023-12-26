@@ -1,19 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import Header from '../Components/Home/Header';
 
 export default function Home() {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
+    <View style={styles.homeContainer}>
+      <Header />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  homeContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
