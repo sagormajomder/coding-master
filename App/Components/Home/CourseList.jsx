@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import Colors from '../../Common/Colors';
 import { getCourseList } from '../../Services';
-import CourseHeading from './CoCourseHeading';
+import CourseHeading from './CourseHeading';
 
 export default function CourseList({ courseLevel }) {
   const [courseList, setCourseList] = useState([]);
