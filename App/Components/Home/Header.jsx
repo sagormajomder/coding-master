@@ -13,7 +13,7 @@ export default function Header() {
   }
 
   return (
-    <View style={styles.headerContainer}>
+    <View style={styles.container}>
       <View style={[styles.rowStyle, styles.innerHeaderContainer]}>
         <View style={[styles.rowStyle, styles.profileContainer]}>
           <Image source={{ uri: user?.imageUrl }} style={styles.profileImage} />
@@ -39,13 +39,7 @@ const styles = StyleSheet.create({
   rowStyle: { display: 'flex', flexDirection: 'row', alignItems: 'center' },
   colorWhite: { color: Colors.WHITE },
   // Main
-  headerContainer: {
-    paddingTop: 10,
-    paddingHorizontal: 15,
-    backgroundColor: Colors.PRIMARY,
-    height: 250,
-    gap: 30,
-  },
+  container: { gap: 30 },
   innerHeaderContainer: {
     justifyContent: 'space-between',
   },
