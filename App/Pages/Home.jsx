@@ -7,7 +7,10 @@ export default function Home() {
   return (
     <View style={styles.homeContainer}>
       <Header />
-      <CourseList courseLevel='Basic' />
+      <View style={styles.courseListContainer}>
+        <CourseList courseLevel='Basic' />
+        <CourseList courseLevel='Advance' />
+      </View>
     </View>
   );
 }
@@ -16,4 +19,5 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
   },
+  courseListContainer: { padding: 20, marginTop: -90, gap: 20 },
 });
