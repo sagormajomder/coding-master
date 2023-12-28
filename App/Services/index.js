@@ -6,7 +6,7 @@ const MASTER_URL =
 export const getCourseList = async courseLevel => {
   const query = gql`
     query CourseList {
-      courses(where: { level: Basic }) {
+      courses(where: { level: ${courseLevel} }) {
         id
         name
         price
