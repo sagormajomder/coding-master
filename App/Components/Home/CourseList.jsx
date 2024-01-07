@@ -1,13 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import Colors from '../../Common/Colors';
 import { getCourseList } from '../../Services';
 import CourseHeading from './CourseHeading';
@@ -42,7 +35,9 @@ export default function CourseList({ courseLevel }) {
         data={courseList}
         renderItem={itemData => (
           <TouchableOpacity
-            onPress={() => navigation.navigate('course-detail')}>
+            onPress={() =>
+              navigation.navigate('course-detail', { course: itemData.item })
+            }>
             <CourseItem itemData={itemData} />
           </TouchableOpacity>
         )}
