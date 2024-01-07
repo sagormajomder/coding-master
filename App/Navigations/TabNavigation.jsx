@@ -2,12 +2,12 @@ import { useUser } from '@clerk/clerk-expo';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
+import { Image } from 'react-native';
 import Colors from '../Common/Colors';
-import Home from '../Pages/Home';
 import LeaderBoard from '../Pages/LeaderBoard';
 import MyCourse from '../Pages/MyCourse';
 import Profile from '../Pages/Profile';
-import { Image } from 'react-native';
+import HomeNavigation from './HomeNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,7 +31,7 @@ export default function TabNavigation() {
       }}>
       <Tab.Screen
         name='home'
-        component={Home}
+        component={HomeNavigation}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (

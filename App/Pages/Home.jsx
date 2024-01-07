@@ -6,7 +6,7 @@ import Header from '../Components/Home/Header';
 
 export default function Home() {
   return (
-   <View style={styles.homeContainer}>
+    <View style={styles.homeContainer}>
       <View style={styles.headerContainer}>
         <Header />
       </View>
