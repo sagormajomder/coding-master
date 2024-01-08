@@ -155,7 +155,7 @@ export const createNewUser = async (
   return response;
 };
 
-export const GetUserDetail = async email => {
+export const getUserDetail = async email => {
   const query = gql`
     query GetUserDetail {
       userDetail(where: { email: "${email}" }) {
@@ -164,6 +164,21 @@ export const GetUserDetail = async email => {
     }
   `;
 
+  const response = await request(MASTER_URL, query);
+  return response;
+};
+
+export const getAllUsers = async () => {
+  const query = gql`
+    query GetAllUsers {
+      userDetails(orderBy: point_DESC) {
+        id
+        profileImage
+        userName
+        point
+      }
+    }
+  `;
   const response = await request(MASTER_URL, query);
   return response;
 };

@@ -5,7 +5,7 @@ import Colors from '../Common/Colors';
 import CourseList from '../Components/Home/CourseList';
 import Header from '../Components/Home/Header';
 import { UserPointsContext } from '../Context/UserPointsContext';
-import { GetUserDetail, createNewUser } from '../Services';
+import { createNewUser, getUserDetail } from '../Services';
 
 export default function Home() {
   const { userPoints, setUserPoints } = useContext(UserPointsContext);
@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   const getUser = async () => {
-    const result = await GetUserDetail(user?.primaryEmailAddress?.emailAddress);
+    const result = await getUserDetail(user?.primaryEmailAddress?.emailAddress);
     // console.log('GetUserDetails-->', result.userDetail?.point);
     setUserPoints(result.userDetail?.point);
   };

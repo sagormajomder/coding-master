@@ -35,6 +35,7 @@ export default function CourseList({ courseLevel }) {
         data={courseList}
         renderItem={itemData => (
           <TouchableOpacity
+            style={{ marginRight: 20 }}
             onPress={() =>
               navigation.navigate('course-detail', { course: itemData.item })
             }>
