@@ -1,11 +1,16 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Text, ToastAndroid, View } from 'react-native';
 import Content from '../Components/ChapterContent/Content';
 import ProgressBar from '../Components/ChapterContent/ProgressBar';
+import { CompletedChapterContext } from '../Context/CompletedChapterContext';
 import { completedChapter } from '../Services';
 
 export default function ChapterContent() {
+  const { isChapterComplete, setIsChapterComplete } = useContext(
+    CompletedChapterContext
+  );
+
   const [activePostion, setActivePosition] = useState(0);
   const handleActivePostion = () => {
     setActivePosition(a => a + 1);
@@ -27,6 +32,7 @@ export default function ChapterContent() {
     );
     if (result) {
       ToastAndroid.show('Successfully Completed!!!', ToastAndroid.LONG);
+      setIsChapterComplete(true);
       navigation.goBack();
     }
   };
