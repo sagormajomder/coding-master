@@ -33,13 +33,13 @@ export default function CourseList({ courseLevel }) {
       </CourseHeading>
       <FlatList
         data={courseList}
-        renderItem={itemData => (
+        renderItem={({ item }) => (
           <TouchableOpacity
             style={{ marginRight: 20 }}
             onPress={() =>
-              navigation.navigate('course-detail', { course: itemData.item })
+              navigation.navigate('course-detail', { course: item })
             }>
-            <CourseItem itemData={itemData} />
+            <CourseItem item={item} />
           </TouchableOpacity>
         )}
         keyExtractor={(item, index) => item?.id}

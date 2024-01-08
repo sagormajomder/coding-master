@@ -1,8 +1,9 @@
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import React, { useContext, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import Colors from '../Common/Colors';
 import CourseList from '../Components/Home/CourseList';
+import CourseProgress from '../Components/Home/CourseProgress';
 import Header from '../Components/Home/Header';
 import { UserPointsContext } from '../Context/UserPointsContext';
 import { createNewUser, getUserDetail } from '../Services';
@@ -42,15 +43,16 @@ export default function Home() {
   };
 
   return (
-    <View style={styles.homeContainer}>
+    <ScrollView style={styles.homeContainer}>
       <View style={styles.headerContainer}>
         <Header />
       </View>
       <View style={styles.courseListContainer}>
+        <CourseProgress />
         <CourseList courseLevel='Basic' />
         <CourseList courseLevel='Advance' />
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

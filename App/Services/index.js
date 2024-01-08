@@ -182,3 +182,50 @@ export const getAllUsers = async () => {
   const response = await request(MASTER_URL, query);
   return response;
 };
+
+export const getAllProgressCourse = async userEmail => {
+  const query = gql`
+    query getAllUserEnrolledProgressCourse {
+      userEnrolledCourses(where: { userEmail: "${userEmail}" }) {
+        completedChapter {
+          chapterId
+        }
+        course {
+          banner {
+            url
+          }
+          chapters {
+            id
+            title
+            content {
+              id
+              heading
+              description {
+                html
+                markdown
+              }
+              output {
+                html
+                markdown
+              }
+            }
+          }
+          description {
+            markdown
+          }
+          id
+          level
+          name
+          price
+          time
+          icon {
+            url
+          }
+          author
+        }
+      }
+    }
+  `;
+  const response = await request(MASTER_URL, query);
+  return response;
+};
