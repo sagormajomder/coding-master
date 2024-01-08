@@ -6,7 +6,8 @@ import { getCourseList } from '../../Services';
 import CourseHeading from './CourseHeading';
 import CourseItem from './CourseItem';
 
-export default function CourseList({ courseLevel }) {
+export default function CourseList({ courseLevel, isHave }) {
+  console.log(isHave);
   const [courseList, setCourseList] = useState([]);
 
   const navigation = useNavigation();
@@ -28,7 +29,13 @@ export default function CourseList({ courseLevel }) {
   return (
     <View style={styles.cointainer}>
       <CourseHeading
-        textColor={courseLevel === 'Basic' ? Colors.WHITE : Colors.BLACK}>
+        textColor={
+          isHave
+            ? Colors.BLACK
+            : courseLevel === 'Basic'
+            ? Colors.WHITE
+            : Colors.BLACK
+        }>
         {courseLevel} Courses
       </CourseHeading>
       <FlatList

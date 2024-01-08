@@ -1,5 +1,5 @@
 import { useAuth, useUser } from '@clerk/clerk-expo';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import Colors from '../Common/Colors';
 import CourseList from '../Components/Home/CourseList';
@@ -9,6 +9,7 @@ import { UserPointsContext } from '../Context/UserPointsContext';
 import { createNewUser, getUserDetail } from '../Services';
 
 export default function Home() {
+  const [isHave, setIsHave] = useState(false);
   const { userPoints, setUserPoints } = useContext(UserPointsContext);
 
   const { isLoaded, signOut } = useAuth();
@@ -20,6 +21,10 @@ export default function Home() {
     },
     [user]
   );
+
+  const handleHavCourseProgress = value => {
+    setIsHave(value);
+  };
 
   const createUser = async () => {
     if (user) {
@@ -48,9 +53,12 @@ export default function Home() {
         <Header />
       </View>
       <View style={styles.courseListContainer}>
-        <CourseProgress />
-        <CourseList courseLevel='Basic' />
-        <CourseList courseLevel='Advance' />
+        <CourseProgress
+          courseLevel='In Progress'
+          onHaveCourseProgress={handleHavCourseProgress}
+        />
+        <CourseList courseLevel='Basic' isHave={isHave} />
+        <CourseList courseLevel='Advance' isHave={isHave} />
       </View>
     </ScrollView>
   );

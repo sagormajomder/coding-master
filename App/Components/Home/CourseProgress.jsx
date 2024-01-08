@@ -7,7 +7,7 @@ import { getAllProgressCourse } from '../../Services';
 import CourseHeading from './CourseHeading';
 import CourseItem from './CourseItem';
 
-export default function CourseProgress() {
+export default function CourseProgress({ onHaveCourseProgress }) {
   const [progressCourseList, setProgressCourseList] = useState([]);
 
   const navigation = useNavigation();
@@ -27,7 +27,13 @@ export default function CourseProgress() {
     setProgressCourseList(result.userEnrolledCourses);
   };
 
-  if (!progressCourseList.length) return;
+  if (progressCourseList.length) {
+    onHaveCourseProgress(true);
+  }
+  if (!progressCourseList.length) {
+    onHaveCourseProgress(false);
+    return;
+  }
 
   return (
     <View>
