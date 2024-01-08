@@ -24,12 +24,15 @@ export const getCourseList = async courseLevel => {
           id
           title
           content {
+            id
             heading
             description {
               markdown
+              html
             }
             output {
               markdown
+              html
             }
           }
         }
@@ -88,5 +91,27 @@ export const getUserEnrolledCourse = async (courseId, userEmail) => {
     }
   `;
   const response = await request(MASTER_URL, query);
+  return response;
+};
+
+export const completedChapter = async (chapterId, recordId) => {
+  const mutationQuery = gql`
+    mutation CompletedChapter {
+      updateUserEnrolledCourse(
+        data: { completedChapter: { create: { data: { chapterId: "${chapterId}" } } } }
+        where: { id: "${recordId}" }
+      ) {
+        id
+      }
+      publishManyUserEnrolledCoursesConnection {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+    }
+  `;
+  const response = await request(MASTER_URL, mutationQuery);
   return response;
 };

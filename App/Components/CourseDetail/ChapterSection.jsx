@@ -1,9 +1,38 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, ToastAndroid, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Colors from '../../Common/Colors';
 
 export default function ChapterSection({ chapterList, userEnrolledCourse }) {
+  const navigation = useNavigation();
+
+  // console.log(userEnrolledCourse[0].completedChapter);
+
+  const onChapterPress = chapter => {
+    if (userEnrolledCourse.length === 0) {
+      ToastAndroid.show('Please Enroll First!', ToastAndroid.LONG);
+      return;
+    } else {
+      navigation.navigate('chapter-content', {
+        chapterContent: chapter.content,
+        chapterId: chapter.id,
+        userCourseRecordId: userEnrolledCourse[0].id,
+      });
+    }
+  };
+
+  const checkIsChapterCompleted = chapterId => {
+    if (userEnrolledCourse[0]?.completedChapter?.length <= 0) {
+      return false;
+    }
+    const result = userEnrolledCourse[0]?.completedChapter.find(
+      item => item.chapterId === chapterId
+    );
+    return result;
+  };
+
   return (
     chapterList && (
       <View
@@ -29,7 +58,7 @@ export default function ChapterSection({ chapterList, userEnrolledCourse }) {
         </Text>
 
         {chapterList.map((item, index) => (
-          <View
+          <TouchableOpacity
             style={[
               {
                 flexDirection: 'row',
@@ -45,7 +74,9 @@ export default function ChapterSection({ chapterList, userEnrolledCourse }) {
                 borderColor: Colors.PRIMARY,
                 backgroundColor: 'rgba(251,94,55,0.11)',
               },
-            ]}>
+            ]}
+            onPress={() => onChapterPress(item)}
+            key={index}>
             <View
               style={{
                 flexDirection: 'row',
@@ -80,7 +111,7 @@ export default function ChapterSection({ chapterList, userEnrolledCourse }) {
             ) : (
               <Ionicons name='play-circle' size={25} color={Colors.PRIMARY} />
             )}
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     )
