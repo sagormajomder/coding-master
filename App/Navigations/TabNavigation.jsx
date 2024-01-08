@@ -30,7 +30,7 @@ export default function TabNavigation() {
         tabBarLabelStyle: { fontSize: 12 },
       }}>
       <Tab.Screen
-        name='home'
+        name='home-navigation'
         component={HomeNavigation}
         options={{
           tabBarLabel: 'Home',

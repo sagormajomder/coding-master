@@ -10,7 +10,11 @@ import {
 import Colors from '../../Common/Colors';
 import OptionItem from './OptionItem';
 
-export default function DetailSection({ course }) {
+export default function DetailSection({
+  course,
+  createUserEnrolledCourse,
+  userEnrolledCourse,
+}) {
   return (
     <View
       style={{
@@ -68,21 +72,24 @@ export default function DetailSection({ course }) {
             justifyContent: 'space-evenly',
             gap: 20,
           }}>
-          <TouchableOpacity
-            style={{
-              padding: 15,
-              backgroundColor: Colors.GRAY,
-              borderRadius: 15,
-            }}>
-            <Text
+          {userEnrolledCourse?.length === 0 ? (
+            <TouchableOpacity
               style={{
-                color: Colors.WHITE,
-                textAlign: 'center',
-                fontSize: 16,
-              }}>
-              Enroll For Free
-            </Text>
-          </TouchableOpacity>
+                padding: 15,
+                backgroundColor: Colors.GRAY,
+                borderRadius: 15,
+              }}
+              onPress={() => createUserEnrolledCourse()}>
+              <Text
+                style={{
+                  color: Colors.WHITE,
+                  textAlign: 'center',
+                  fontSize: 16,
+                }}>
+                Enroll For Free
+              </Text>
+            </TouchableOpacity>
+          ) : null}
           <TouchableOpacity
             style={{
               padding: 15,
