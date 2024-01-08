@@ -14,11 +14,24 @@ export const getCourseList = async courseLevel => {
         tags
         time
         author
+        description {
+          markdown
+        }
         banner {
           url
         }
         chapters {
           id
+          title
+          content {
+            heading
+            description {
+              markdown
+            }
+            output {
+              markdown
+            }
+          }
         }
         icon {
           url
