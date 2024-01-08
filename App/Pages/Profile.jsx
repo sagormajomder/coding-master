@@ -1,14 +1,16 @@
 import { useAuth, useUser } from '@clerk/clerk-react';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import Colors from '../Common/Colors';
 import LogoutSVG from '../Components/SVGIcons/LogoutSVG';
 import MyCourseSVG from '../Components/SVGIcons/MyCourseSVG';
 import RankingSVG from '../Components/SVGIcons/RankingSVG';
 import UpgradeSVG from '../Components/SVGIcons/UpgradeSVG';
+import { UserPointsContext } from '../Context/UserPointsContext';
 import CoinIcon from './../../assets/images/star.png';
 
 export default function Profile({ navigation }) {
+  const { userPoints, setUserPoints } = useContext(UserPointsContext);
   const { signOut } = useAuth();
   const { isLoaded, isSignedIn, user } = useUser();
 
@@ -36,7 +38,7 @@ export default function Profile({ navigation }) {
         {/* Points */}
         <View style={styles.coinContainer}>
           <Image source={CoinIcon} style={styles.coinImg} />
-          <Text style={styles.coinText}>200 Points</Text>
+          <Text style={styles.coinText}>{userPoints} Points</Text>
         </View>
       </View>
 

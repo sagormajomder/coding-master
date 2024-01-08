@@ -1,11 +1,13 @@
 import { useUser } from '@clerk/clerk-expo';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { UserPointsContext } from '../../Context/UserPointsContext';
 import CoinIcon from './../../../assets/images/star.png';
 import Colors from './../../Common/Colors';
 import SearchBar from './SearchBar';
 
 export default function Header() {
+  const { userPoints, setUserPoints } = useContext(UserPointsContext);
   const { isLoaded, isSignedIn, user } = useUser();
 
   if (!isLoaded || !isSignedIn) {
@@ -24,9 +26,9 @@ export default function Header() {
             </Text>
           </View>
         </View>
-        <View>
+        <View style={{ alignItems: 'center' }}>
           <Image source={CoinIcon} style={styles.coinImage} />
-          <Text style={styles.colorWhite}>3500</Text>
+          <Text style={styles.colorWhite}>{userPoints}</Text>
         </View>
       </View>
       <SearchBar />
