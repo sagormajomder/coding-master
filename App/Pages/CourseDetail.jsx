@@ -41,14 +41,14 @@ export default function CourseDetail() {
 
   const getEnrolledCourse = async (courseId, userEmail) => {
     const result = await getUserEnrolledCourse(courseId, userEmail);
-
+    // console.log(result.userEnrolledCourses);
     setUserEnrolledCourse(result.userEnrolledCourses);
   };
 
   return (
     params.course && (
       <View>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={{ padding: 20 }}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <Ionicons
